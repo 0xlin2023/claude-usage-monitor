@@ -1,0 +1,64 @@
+{
+  "name": "claude-usage-monitor",
+  "displayName": "Claude Usage Monitor",
+  "description": "Monitor your Claude API usage in the VS Code status bar",
+  "version": "0.0.1",
+  "publisher": "claude-usage",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claude-usage.refresh",
+        "title": "Claude Usage: Refresh"
+      },
+      {
+        "command": "claude-usage.setUsage",
+        "title": "Claude Usage: Set Usage Manually"
+      },
+      {
+        "command": "claude-usage.showDetail",
+        "title": "Claude Usage: Show Details"
+      },
+      {
+        "command": "claude-usage.setSessionKey",
+        "title": "Claude Usage: Set Session Key"
+      },
+      {
+        "command": "claude-usage.selectMode",
+        "title": "Claude Usage: Select Tracking Mode"
+      }
+    ],
+    "configuration": {
+      "title": "Claude Usage Monitor",
+      "properties": {
+        "claudeUsage.refreshInterval": {
+          "type": "number",
+          "default": 300,
+          "description": "Refresh interval in seconds (default: 300 = 5 minutes)"
+        },
+        "claudeUsage.warningThreshold": {
+          "type": "number",
+          "default": 80,
+          "description": "Usage percentage to show warning (yellow)"
+        },
+        "claudeUsage.criticalThreshold": {
+          "type": "number",
+          "default": 95,
+          "description": "Usage percentage to show critical (red)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0"
+  }
+}
